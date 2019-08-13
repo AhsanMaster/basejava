@@ -14,10 +14,11 @@ public class ArrayStorage {
 
     void save(Resume r) {
         if (get(r.uuid) == null) {
-            if (size == 10_000) {
+            if (size == storage.length) {
                 System.out.println("Массив полон. Добавление невозмжно!");
             } else {
-                storage[size++] = r;
+                storage[size] = r;
+                size++;
             }
         }
     }
@@ -34,8 +35,9 @@ public class ArrayStorage {
     void delete(String uuid) {
         for (int i = 0; i < size; i++) {
             if (storage[i].uuid.equals(uuid)) {
-                System.arraycopy(storage, i + 1, storage, i, size - i);
-                storage[size-- - 1] = null;
+                System.arraycopy(storage, i + 1, storage, i, size - i-1);
+                storage[size - 1] = null;
+                size--;
                 return;
             }
         }
