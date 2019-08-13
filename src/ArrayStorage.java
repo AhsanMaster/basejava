@@ -3,46 +3,41 @@
  */
 public class ArrayStorage {
     Resume[] storage = new Resume[10000];
+    private int size;
 
     void clear() {
-        int size = size();
         for (int i = 0; i < size; i++) {
             storage[i] = null;
         }
+        size =0;
     }
 
     void save(Resume r) {
         if (get(r.uuid) == null) {
-            int size = size();
             if (size == 10_000) {
                 System.out.println("Массив полон. Добавление невозмжно!");
             } else {
-                storage[size] = r;
+                storage[size++] = r;
             }
         }
     }
 
     Resume get(String uuid) {
-        short i = 0;
-        while (storage[i] != null && i < 10_000) {
+        for (int i = 0; i <size ; i++) {
             if (storage[i].uuid.equals(uuid)) {
                 return storage[i];
             }
-            i++;
         }
         return null;
     }
 
     void delete(String uuid) {
-        short i = 0;
-        int size = size();
-        while (storage[i] != null && i < 10_000) {
+        for (int i = 0; i < size; i++) {
             if (storage[i].uuid.equals(uuid)) {
                 System.arraycopy(storage, i + 1, storage, i, size - i);
-                storage[size - 1] = null;
+                storage[size-- - 1] = null;
                 return;
             }
-            i++;
         }
     }
 
@@ -50,17 +45,12 @@ public class ArrayStorage {
      * @return array, contains only Resumes in storage (without null)
      */
     Resume[] getAll() {
-        int size = size();
         Resume[] result = new Resume[size];
         System.arraycopy(storage, 0, result, 0, size);
         return result;
     }
 
     int size() {
-        int i = 0;
-        while (storage[i] != null) {
-            i++;
-        }
-        return i;
+        return size;
     }
 }
