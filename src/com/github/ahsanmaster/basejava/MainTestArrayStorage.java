@@ -1,7 +1,10 @@
 package com.github.ahsanmaster.basejava;
 
+import com.github.ahsanmaster.basejava.model.Resume;
+import com.github.ahsanmaster.basejava.storage.ArrayStorage;
+
 /**
- * Test for your com.github.ahsanmaster.basejava.ArrayStorage implementation
+ * Test for your com.github.ahsanmaster.basejava.storage.ArrayStorage implementation
  */
 public class MainTestArrayStorage {
     static final ArrayStorage ARRAY_STORAGE = new ArrayStorage();

@@ -1,11 +1,14 @@
 package com.github.ahsanmaster.basejava;
 
+import com.github.ahsanmaster.basejava.model.Resume;
+import com.github.ahsanmaster.basejava.storage.ArrayStorage;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
 /**
- * Interactive test for com.github.ahsanmaster.basejava.ArrayStorage implementation
+ * Interactive test for com.github.ahsanmaster.basejava.storage.ArrayStorage implementation
  * (just run, no need to understand)
  */
 public class MainArray {

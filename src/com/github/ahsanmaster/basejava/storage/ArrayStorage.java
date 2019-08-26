@@ -1,4 +1,8 @@
-package com.github.ahsanmaster.basejava;
+package com.github.ahsanmaster.basejava.storage;
+
+import com.github.ahsanmaster.basejava.model.Resume;
+
+import java.util.Arrays;
 
 /**
  * Array based storage for Resumes
@@ -8,9 +12,7 @@ public class ArrayStorage {
     private int size;
 
     public void clear() {
-        for (int i = 0; i < size; i++) {
-            storage[i] = null;
-        }
+        Arrays.fill(storage,0,size,null);
         size =0;
     }
 
@@ -47,9 +49,7 @@ public class ArrayStorage {
     }
 
     public Resume[] getAll() {
-        Resume[] result = new Resume[size];
-        System.arraycopy(storage, 0, result, 0, size);
-        return result;
+        return Arrays.copyOfRange(storage,0,size);
     }
 
     public int size() {
