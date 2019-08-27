@@ -7,9 +7,8 @@ import java.util.Arrays;
 /**
  * Array based storage for Resumes
  */
-public class ArrayStorage {
-    private Resume[] storage = new Resume[10000];
-    private int size;
+public class ArrayStorage extends AbstractArrayStorage {
+
 
     public void clear() {
         Arrays.fill(storage,0,size,null);
@@ -18,7 +17,7 @@ public class ArrayStorage {
 
     public void save(Resume r) {
         if (indexOf(r) == -1) {
-            if (size == storage.length) {
+            if (size == STORAGE_LIMIT) {
                 System.out.println("Array is full. Cannot add.");
             } else {
                 storage[size] = r;
@@ -52,9 +51,7 @@ public class ArrayStorage {
         return Arrays.copyOfRange(storage,0,size);
     }
 
-    public int size() {
-        return size;
-    }
+
 
     public int indexOf(Resume r){
         for (int i = 0; i <size ; i++) {
