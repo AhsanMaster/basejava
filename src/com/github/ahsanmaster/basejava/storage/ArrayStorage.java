@@ -9,57 +9,14 @@ import java.util.Arrays;
  */
 public class ArrayStorage extends AbstractArrayStorage {
 
-
-    public void clear() {
-        Arrays.fill(storage,0,size,null);
-        size =0;
+    @Override
+    protected void fillDeletedElement(int indexOfPosition) {
+     storage[indexOfPosition] = storage[size - 1] ;
     }
 
-    public void save(Resume r) {
-        if (indexOf(r) == -1) {
-            if (size == STORAGE_LIMIT) {
-                System.out.println("Array is full. Cannot add.");
-            } else {
-                storage[size] = r;
-                size++;
-            }
-        }
-    }
-
-    public Resume get(String uuid) {
-        int indexOfPosition = indexOf(uuid);
-        if(indexOfPosition ==-1){
-            System.out.println("Resume not found.");
-            return null;
-        }else{
-            return storage[indexOfPosition];
-        }
-    }
-
-    public void delete(String uuid) {
-        int indexOfPosition = indexOf(uuid);
-        if(indexOfPosition ==-1){
-            System.out.println("Resume not found. Cannot delete.");
-        }else{
-            storage[indexOfPosition] = storage[size - 1] ;
-            storage[size - 1] = null;
-            size--;
-        }
-    }
-
-    public Resume[] getAll() {
-        return Arrays.copyOfRange(storage,0,size);
-    }
-
-
-
-    public int indexOf(Resume r){
-        for (int i = 0; i <size ; i++) {
-            if (storage[i].equals(r)) {
-                return i;
-            }
-        }
-        return -1;
+    @Override
+    public void insertElement(Resume r, int index){
+        storage[index] = r;
     }
 
     public int indexOf(String uuid){
@@ -71,12 +28,5 @@ public class ArrayStorage extends AbstractArrayStorage {
         return -1;
     }
 
-    public void update(Resume r){
-        int indexOfPosition = indexOf(r);
-        if (indexOfPosition== -1) {
-            System.out.println("Resume not found. Cannot update.");
-        }else {
-            storage[indexOfPosition] = r;
-        }
-    }
+
 }
